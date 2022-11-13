@@ -1,4 +1,4 @@
-Table Location {
+Table "Locations" {
   "Name" varchar [pk]
   "Area" float
   "Population" int
@@ -7,19 +7,19 @@ Table Location {
   "Air Quality" float
 }
 
-Table Weapons{
-  Name varchar [pk]
-  Type varchar
-  Weight float
-  Damage int
-  Material varchar
-  Shape varchar 
+Table "Weapons" {
+    "Name" varchar [pk]
+    "Type" varchar
+    "Weight" float
+    "Damage" int
+    "Material" varchar
+    "Shape" varchar 
 }
 
 Table Flag {
-  Name varchar
-  Color varchar
-  Shape varchar
+    "Name" varchar
+    "Color" varchar
+    "Shape" varchar
 }
 
 Table "Plants/Herbs" {
