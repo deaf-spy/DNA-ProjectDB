@@ -1,5 +1,5 @@
-Table "Locations" {
-  "Name" varchar [pk]
+Table Location {
+  "name" varchar [pk]
   "Area" float
   "Population" int
   "Gravity" float
@@ -7,30 +7,30 @@ Table "Locations" {
   "Air Quality" float
 }
 
-Table "Weapons" {
-    "Name" varchar [pk]
-    "Type" varchar
-    "Weight" float
-    "Damage" int
-    "Material" varchar
-    "Shape" varchar 
+Table Weapons{
+  Name varchar [pk]
+  Type varchar
+  Weight float
+  Damage int
+  Material varchar [pk]
+  Shape varchar [pk]
 }
 
-Table "Flag" {
-    "Name" varchar
-    "Color" varchar
-    "Shape" varchar
+Table Flag {
+  Name varchar
+  Color varchar [pk]
+  Shape varchar
 }
 
 Table "Plants/Herbs" {
     "Name of Plant" varchar [pk]
     "Medical Property" varchar
     "Terrestrial/Aquatic" bool
-    "Locations" varchar
+    "Locations" varchar [pk]
 }
 
 Table "Chariots" {
-    "Color" varchar
+    "Color" varchar [pk]
     "Size" float
     "Max Speed" int
     "Number of seats" int
@@ -47,7 +47,7 @@ Table "Temples" {
     "Name" varchar
     "Location" varchar
     "Main God" varchar
-    "Gods" varchar
+    "Gods" varchar [pk]
     "Decorations" varchar
     "Pandit Name" varchar
 }
@@ -56,19 +56,19 @@ Table "Demons" {
     "Demon ID" int [pk]
     "Powers" int
     "Size" float
-    "Locations" varchar
+    "Locations" varchar [pk]
     "Human Form ID" int
 }
 
-Table "Humans" {
-    "Name" varchar
-    "Human ID" char [pk]
-    "Age" int
-    "Religion" varchar
-    "Karma" int
-    "Locations" varchar [ref: > Location.Name]
-    "Gods they worship" varchar [ref: > Gods.Name]
-    "Demons scared of" varchar [ref: > Demons."Demon ID"]
+Table Humans {
+  Name varchar
+  "Human-ID" char [pk]
+  Age int
+  Religion varchar
+  Karma int
+  Locations varchar [pk] [ref: > Location.name]
+  "Gods they worship" varchar [pk] [ref: > Gods.Name]
+  "Demons scared of" varchar [pk] [ref: > Demons."Demon ID"]
 }
 Table "Gods" {
     "Name" varchar [pk]
@@ -79,16 +79,16 @@ Table "Gods" {
     "Power" int
     "Immortality" bool
     "Status" bool
-    "Locations" varchar
-    "Chariot" varchar
+    "Locations" varchar [pk]
+    "Chariot" varchar 
     "Family (composite)" varchar
-    "Human Form ID" int
+    "Human Form ID" int [pk]
 }
 
-Ref: "Gods"."Locations" > "Location"."Name"
-Ref: "Demons"."Locations" > "Location"."Name"
-Ref: "Events"."Location" > "Location"."Name"
-Ref: "Plants/Herbs"."Locations" > "Location"."Name"
-Ref: "Gods"."Human Form ID" > "Humans"."Human ID"
-Ref: "Demons"."Human Form ID" > "Humans"."Human ID"
+Ref: "Gods"."Locations" > "Location"."name"
+Ref: "Demons"."Locations" > "Location"."name"
+Ref: "Events"."Location" > "Location"."name"
+Ref: "Plants/Herbs"."Locations" > "Location"."name"
+Ref: "Gods"."Human Form ID" > "Humans"."Human-ID"
+Ref: "Demons"."Human Form ID" > "Humans"."Human-ID"
 Ref: "Temples"."Main God" > "Gods"."Name"
