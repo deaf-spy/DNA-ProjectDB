@@ -1,0 +1,94 @@
+Table Location {
+  "name" varchar [pk]
+  "Area" float
+  "Population" int
+  "Gravity" float
+  "Avg. Temperature" float
+  "Air Quality" float
+}
+
+Table Weapons{
+  Name varchar [pk]
+  Type varchar
+  Weight float
+  Damage int
+  Material varchar
+  Shape varchar 
+}
+
+Table Flag {
+  Name varchar
+  Color varchar
+  Shape varchar
+}
+
+Table "Plants/Herbs" {
+    "Name of Plant" varchar [pk]
+    "Medical Property" varchar
+    "Terrestrial/Aquatic" bool
+    "Locations" varchar
+}
+
+Table "Chariots" {
+    "Color" varchar
+    "Size" float
+    "Max Speed" int
+    "Number of seats" int
+}
+
+Table "Events" {
+    "Name" varchar [pk]
+    "Time Period" varchar
+    "Location" varchar
+    "No. of entities" int
+    "No. of deaths" int
+}
+Table "Temples" {
+    "Name" varchar
+    "Location" varchar
+    "Main God" varchar
+    "Gods" varchar
+    "Decorations" varchar
+    "Pandit Name" varchar
+}
+Table "Demons" {
+    "Name" varchar
+    "Demon ID" int [pk]
+    "Powers" int
+    "Size" float
+    "Locations" varchar
+    "Human Form ID" int
+}
+
+Table Humans {
+  Name varchar
+  "Human-ID" char [pk]
+  Age int
+  Religion varchar
+  Karma int
+  Locations varchar [ref: > Location.name]
+  "Gods they worship" varchar [ref: > Gods.Name]
+  "Demons scared of" varchar [ref: > Demons."Demon ID"]
+}
+Table "Gods" {
+    "Name" varchar [pk]
+    "God's Plan" varchar
+    "Flag Name" varchar
+    "Strength" int
+    "No. of supporters" int
+    "Power" int
+    "Immortality" bool
+    "Status" bool
+    "Locations" varchar
+    "Chariot" varchar
+    "Family (composite)" varchar
+    "Human Form ID" int
+}
+
+Ref: "Gods"."Locations" > "Location"."name"
+Ref: "Demons"."Locations" > "Location"."name"
+Ref: "Events"."Location" > "Location"."name"
+Ref: "Plants/Herbs"."Locations" > "Location"."name"
+Ref: "Gods"."Human Form ID" > "Humans"."Human-ID"
+Ref: "Demons"."Human Form ID" > "Humans"."Human-ID"
+Ref: "Temples"."Main God" > "Gods"."Name"
