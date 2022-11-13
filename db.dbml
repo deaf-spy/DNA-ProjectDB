@@ -16,7 +16,7 @@ Table "Weapons" {
     "Shape" varchar 
 }
 
-Table Flag {
+Table "Flag" {
     "Name" varchar
     "Color" varchar
     "Shape" varchar
