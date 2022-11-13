@@ -1,5 +1,5 @@
 Table Location {
-  "name" varchar [pk]
+  "Name" varchar [pk]
   "Area" float
   "Population" int
   "Gravity" float
