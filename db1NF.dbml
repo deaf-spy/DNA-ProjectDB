@@ -1,0 +1,103 @@
+Table Location {
+  "Name" varchar [pk]
+  "Area" float
+  "Population" int
+  "Gravity" float
+  "Avg. Temperature" float
+  "Air Quality" float
+}
+
+Table Weapons{
+  Name varchar [pk]
+  Type varchar
+  Weight float
+  Damage int
+  Material varchar
+  Height varchar
+  Breadth varchar
+  Length varchar
+  Size varchar
+}
+
+Table Flag {
+  Name varchar
+  Color varchar
+  Height varchar
+  Breadth varchar
+  Length varchar
+  Size varchar
+}
+
+Table "Plants/Herbs" {
+    "Name of Plant" varchar [pk]
+    "Medical Property" varchar
+    "Terrestrial/Aquatic" bool
+    "Locations" varchar
+}
+
+Table "Chariots" {
+    "Color" varchar
+    "Size" float
+    "Max Speed" int
+    "Number of seats" int
+}
+
+Table "Events" {
+    "Name" varchar [pk]
+    "Time Period" varchar
+    "Location" varchar
+    "No. of entities" int
+    "No. of deaths" int
+}
+Table "Temples" {
+    "Name" varchar
+    "Location" varchar
+    "Main God" varchar
+    "Gods" varchar
+    "Decorations" varchar
+    "Pandit Name" varchar
+}
+Table "Demons" {
+    "Name" varchar
+    "Demon ID" int [pk]
+    "Powers" int
+    "Size" float
+    "Locations" varchar
+    "Human Form ID" int
+}
+
+Table Humans {
+  Name varchar
+  "Human-ID" char [pk]
+  Age int
+  Religion varchar
+  Karma int
+  Locations varchar [ref: > Location.Name]
+  "Gods they worship" varchar [ref: > Gods.Name]
+  "Demons scared of" varchar [ref: > Demons."Demon ID"]
+}
+Table "Gods" {
+    "Name" varchar [pk]
+    "God's Plan" varchar
+    "Flag Name" varchar
+    "Strength" int
+    "No. of supporters" int
+    "Power" int
+    "Immortality" bool
+    "Status" bool
+    "Locations" varchar
+    "Chariot" varchar
+    "Father" varchar [pk]
+    "Mother" varchar [pk]
+    "Sister" varchar [pk]
+    "Brother" varchar [pk]
+    "Human Form ID" int
+}
+
+Ref: "Gods"."Locations" > "Location"."Name"
+Ref: "Demons"."Locations" > "Location"."Name"
+Ref: "Events"."Location" > "Location"."Name"
+Ref: "Plants/Herbs"."Locations" > "Location"."Name"
+Ref: "Gods"."Human Form ID" > "Humans"."Human-ID"
+Ref: "Demons"."Human Form ID" > "Humans"."Human-ID"
+Ref: "Temples"."Main God" > "Gods"."Name"
