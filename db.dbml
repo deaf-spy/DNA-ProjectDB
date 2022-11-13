@@ -66,7 +66,7 @@ Table Humans {
   Age int
   Religion varchar
   Karma int
-  Locations varchar [ref: > Location.name]
+  Locations varchar [ref: > Location.Name]
   "Gods they worship" varchar [ref: > Gods.Name]
   "Demons scared of" varchar [ref: > Demons."Demon ID"]
 }
@@ -85,10 +85,10 @@ Table "Gods" {
     "Human Form ID" int
 }
 
-Ref: "Gods"."Locations" > "Location"."name"
-Ref: "Demons"."Locations" > "Location"."name"
-Ref: "Events"."Location" > "Location"."name"
-Ref: "Plants/Herbs"."Locations" > "Location"."name"
+Ref: "Gods"."Locations" > "Location"."Name"
+Ref: "Demons"."Locations" > "Location"."Name"
+Ref: "Events"."Location" > "Location"."Name"
+Ref: "Plants/Herbs"."Locations" > "Location"."Name"
 Ref: "Gods"."Human Form ID" > "Humans"."Human-ID"
 Ref: "Demons"."Human Form ID" > "Humans"."Human-ID"
 Ref: "Temples"."Main God" > "Gods"."Name"
